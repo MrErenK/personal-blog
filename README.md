@@ -66,6 +66,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```env
 SITE_URL=your-site-url
 ADMIN_PASSWORD=your-secure-password
+GOOGLE_SITE_VERIFICATION=your-google-verification-code (optional)
 ```
 
 6. Start the development server:
@@ -84,6 +85,26 @@ yarn dev
 10. Use a service like [Real Favicon Generator](https://realfavicongenerator.net/) to generate favicons and replace the files in the `public` and `src` directories.
 
 11. Deploy your site to Vercel, Netlify, or your preferred hosting provider. If you prefer self-hosting, build the site with `npm run build` and serve it with `npm run start` and setup pm2 or similar process manager if you want to keep the server running.
+
+## Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `SITE_URL` | Your site's URL | Yes |
+| `ADMIN_PASSWORD` | Password for admin panel access | Yes |
+| `GOOGLE_SITE_VERIFICATION` | Google Search Console verification code | No |
+
+### Google Site Verification
+
+To enable Google Search Console verification:
+
+1. Go to [Google Search Console](https://search.google.com/search-console/)
+2. Add your property (website)
+3. Choose "HTML tag" verification method
+4. Copy the content value from the meta tag (not the whole tag)
+5. Add it to your environment variables as `GOOGLE_SITE_VERIFICATION`
+
+The verification meta tag will automatically be added to your site when this environment variable is set.
 
 ## Project Structure
 

@@ -11,6 +11,13 @@ if (!siteUrl) {
 export function generateMetadata(config?: SiteConfig): Metadata {
   const siteConfig = config || loadConfigForServerSync();
 
+  // Build verification object conditionally
+  const verification: Record<string, string> = {};
+  const googleVerification = process.env.GOOGLE_SITE_VERIFICATION;
+  if (googleVerification) {
+    verification.google = googleVerification;
+  }
+
   return {
     metadataBase: new URL(siteUrl),
     title: {
@@ -45,6 +52,8 @@ export function generateMetadata(config?: SiteConfig): Metadata {
         "max-snippet": -1,
       },
     },
+    verification:
+      Object.keys(verification).length > 0 ? verification : undefined,
   };
 }
 
